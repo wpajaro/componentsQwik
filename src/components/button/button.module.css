@@ -1,0 +1,73 @@
+/* Base del botón */
+.btn {
+    border-radius: 6px;
+    padding: 8px 30px;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    margin: 8px;
+}
+
+/*Variantes Fill */
+.fill.primary { background-color: #35bfbf; color: white; }
+.fill.secondary { background-color: #ff6150; color: white; }
+.fill.success { background-color: #63d5be; color: white; }
+.fill.info { background-color: #9560dd; color: white; }
+.fill.warning { background-color: #f8aa4b; color: white; }
+.fill.danger { background-color: #f1523d; color: white; }
+.fill.light { background-color: #f3fbfb; color: black; }
+
+.fill.info:active{
+    color: black;
+}
+.fill.warning:active{
+    color: black;
+}
+/*Variantes Outline */
+.outline {
+    background: none;
+    border: 1px solid currentColor;
+}
+.bold-border {
+    background: none;
+    border: 2px solid currentColor;
+}
+
+.outline.primary { color: #35bfbf; border-color: #35bfbf; }
+.outline.secondary { color: #ff6150; border-color: #ff6150; }
+.outline.success { color: #63d5be; border-color: #63d5be; }
+.outline.info { color: #9560dd; border-color: #9560dd; }
+.outline.warning { color: #f8aa4b; border-color: #f8aa4b; }
+.outline.danger { color: #f1523d; border-color: #f1523d; }
+.outline.light { color: black; border-color: #a0a0a0; }
+
+/*Hover para Outline */
+.outline.primary:hover { background-color: #35bfbf; color: white; }
+.outline.secondary:hover { background-color: #ff6150; color: white; }
+.outline.success:hover { background-color: #63d5be; color: white; }
+.outline.info:hover { background-color: #9560dd; color: white; }
+.outline.warning:hover { background-color: #f8aa4b; color: white; }
+.outline.danger:hover { background-color: #f1523d; color: white; }
+.outline.light:hover { background-color: #a0a0a0; color: black; }
+
+/*Tamaños */
+.large { padding: 10px 30px; font-size: 16px; font-weight: 150; }
+.small { padding: 7px 28px; font-size: 11px; }
+.extra-small { padding: 5px 6px; font-size: 9px; font-weight: bold; }
+.active { padding: 8px 25px; font-size: 12px; }
+
+/*Estado Disabled */
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.primary.disabled { background-color: #35bfbf; color: white; }
+.secondary.disabled { background-color: #ff6150; color: white; }
+.success.disabled { background-color: #63d5be; color: white; }
+.info.disabled { background-color: #9560dd; color: white; }
+.warning.disabled { background-color: #f8aa4b; color: white; }
+.danger.disabled { background-color: #f1523d; color: white; }
+.light.disabled { background-color: #f3fbfb; color: black; }
+
+

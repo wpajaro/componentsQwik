@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.tagPill {
+    font-family: 'Roboto', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 12px;
+    font-size: 12px;
+    font-weight: 350;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: text;
+    margin: 5px;
+  }
+  
+  /* Tipos de etiquetas */
+  .pill {
+    border-radius: 20px;
+  }
+  
+  .number_badge, .number-pill {
+    border-radius: 8px;
+    font-size: 11px;
+    width: 8px;
+    height: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .number-pill {
+    font-size: 14px;
+    width: 8px;
+    height: 24px;
+    border-radius: 18px;
+  }
+  
+  .badge_icons {
+    display: flex;
+    border-radius: 8px;
+    width: 15px;
+    height: 22px;
+    display: inline-flex;
+    cursor: pointer;
+  }
+
+  .pill_icons {
+    cursor: pointer;
+    display: flex;
+    border-radius: 20px;
+    width: 10px;
+    height: 26px;
+    display: inline-flex;
+    cursor: pointer;
+  }
+  
+  .badge_heading {
+    font-family: 'Roboto', 'sans-serif';
+    border-radius: 8px;
+    padding: 6px 16px;
+  }
+
+  .badge_button {
+    font-family: 'Roboto', 'sans-serif';
+    text-align: left;
+    display: inline-flex;
+    border-radius: 8px;
+    white-space: nowrap;
+    padding: 0.8rem 2rem;
+    gap: 1em;
+    cursor: pointer;
+  }
+  
+  .badge_button i {
+    font-size: 20px;
+  }
+
+  /* Colores */
+
+  .primary { background-color: #35bfbf; color: white; }
+  .secondary { background-color: #ff6150; color: white; }
+  .success { background-color: #63d5be; color: white; }
+  .info { background-color: #9560dd; color: white; }
+  .warning { background-color: #f8aa4b; color: black; }
+  .danger { background-color: #f1523d; color: white; }
+  .light { background-color: #F5F6F9; color: black; }
+  .dark { background: #15202b; color: white;}
+  
+  /* Iconos */
+  
+  i {
+    font-size: 14px;
+    margin-right: 0;
+  }
+  

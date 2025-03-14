@@ -15,7 +15,9 @@
 .fill.info { background-color: #9560dd; color: white; }
 .fill.warning { background-color: #f8aa4b; color: white; }
 .fill.danger { background-color: #f1523d; color: white; }
-.fill.light { background-color: #f3fbfb; color: black; }
+.fill.light { background-color: #F5F6F9; color: black; }
+
+
 
 .fill.info:active{
     color: black;
@@ -48,7 +50,7 @@
 .outline.info:hover { background-color: #9560dd; color: white; }
 .outline.warning:hover { background-color: #f8aa4b; color: white; }
 .outline.danger:hover { background-color: #f1523d; color: white; }
-.outline.light:hover { background-color: #a0a0a0; color: black; }
+.outline.light:hover { background-color: #F5F6F9; color: black; }
 
 /*Tamaños */
 .large { padding: 10px 30px; font-size: 16px; font-weight: 150; }
@@ -68,6 +70,6 @@
 .info.disabled { background-color: #9560dd; color: white; }
 .warning.disabled { background-color: #f8aa4b; color: white; }
 .danger.disabled { background-color: #f1523d; color: white; }
-.light.disabled { background-color: #f3fbfb; color: black; }
+.light.disabled { background-color: #F5F6F9; color: black; }
 
 

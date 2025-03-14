@@ -1,5 +1,7 @@
 import { component$, Slot } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
+import { Link } from "@builder.io/qwik-city";
+import "../global.css/"
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -13,5 +15,29 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 };
 
 export default component$(() => {
-  return <Slot />;
+  return (
+    <div class="container">
+      {/* Navbar */}
+      <nav class="navbar">
+        <div class="navbar-brand">
+          <Link href="/">Biblioteca Qwik</Link>
+        </div>
+        <div class="navbar-links">
+          <Link href="/buttons">Botones</Link>
+          <Link href="/tagPill">Tag & Pill</Link>
+          <Link href="/progress">Progreso</Link>
+        </div>
+      </nav>
+
+      {/* Contenido principal */}
+      <main class="main-content">
+        <Slot />
+      </main>
+
+      {/* Footer */}
+      <footer class="footer">
+        © {new Date().getFullYear()} Biblioteca Qwik - Todos los derechos reservados
+      </footer>
+    </div>
+  );
 });

@@ -2,7 +2,7 @@ import { component$, Slot } from "@builder.io/qwik";
 import type { PropFunction } from "@builder.io/qwik";
 import type { JSXChildren } from "@builder.io/qwik";
 import styles from "./modal.module.css";
-import Button from "../atoms/button/button";
+import Button from "../../atoms/button/button";
 
 interface ModalProps {
     show: boolean;

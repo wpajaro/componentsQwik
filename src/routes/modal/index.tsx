@@ -1,5 +1,5 @@
 import { component$, $, useSignal } from "@builder.io/qwik";
-import Modal from "~/components/modal/modal";
+import Modal from "~/components/organisms/modal/modal";
 import Button from "~/components/atoms/button/button";
 
 export default component$(() => {

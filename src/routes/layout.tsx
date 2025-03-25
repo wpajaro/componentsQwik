@@ -1,43 +1,44 @@
-import { component$, Slot } from "@builder.io/qwik";
-import type { RequestHandler } from "@builder.io/qwik-city";
-import { Link } from "@builder.io/qwik-city";
-import "../global.css/"
-
-export const onGet: RequestHandler = async ({ cacheControl }) => {
-  // Control caching for this request for best performance and to reduce hosting costs:
-  // https://qwik.dev/docs/caching/
-  cacheControl({
-    // Always serve a cached response by default, up to a week stale
-    staleWhileRevalidate: 60 * 60 * 24 * 7,
-    // Max once every 5 seconds, revalidate on the server to get a fresh version of this page
-    maxAge: 5,
-  });
-};
+import { component$, Slot, useTask$, useStore } from "@builder.io/qwik";
+import { useLocation, Link } from "@builder.io/qwik-city";
+import "../global.css";
 
 export default component$(() => {
+  const location = useLocation();
+  const state = useStore({ isLoginPage: false });
+
+  useTask$(({ track }) => {
+    track(() => location.url.pathname); // Se ejecuta cada vez que cambia la URL
+    state.isLoginPage = location.url.pathname.startsWith("/login");
+  });
+
   return (
     <div class="container">
-      {/* Navbar */}
-      <nav class="navbar">
-        <div class="navbar-brand">
-          <Link href="/">Biblioteca Qwik</Link>
-        </div>
-        <div class="navbar-links">
-          <Link href="/buttons">Botones</Link>
-          <Link href="/tagPill">Tag & Pill</Link>
-          <Link href="/progress">Progreso</Link>
-        </div>
-      </nav>
+      {/* Navbar (Oculta si estamos en /login) */}
+      {!state.isLoginPage && (
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <Link href="/">Biblioteca de Componentes SIUD</Link>
+          </div>
+          <div class="navbar-links">
+            <Link href="/buttons">Botones</Link>
+            <Link href="/tagPill">Tag & Pill</Link>
+            <Link href="/login">Login</Link>
+            <Link href="/modal">Modales</Link>
+          </div>
+        </nav>
+      )}
 
       {/* Contenido principal */}
       <main class="main-content">
         <Slot />
       </main>
 
-      {/* Footer */}
-      <footer class="footer">
-        © {new Date().getFullYear()} Biblioteca Qwik - Todos los derechos reservados
-      </footer>
+      {/* Footer (Oculta si estamos en /login) */}
+      {!state.isLoginPage && (
+        <footer class="footer">
+          © {new Date().getFullYear()} Biblioteca de Componentes SIUD - Todos los derechos reservados
+        </footer>
+      )}
     </div>
   );
 });

@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import Button from "~/components/button/button";
+import Button from "~/components/atoms/button/button";
 
 
 export default component$(() => {

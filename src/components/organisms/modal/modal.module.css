@@ -1,10 +1,10 @@
-.overlay {
+  .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,17 +19,79 @@
     padding: 1.25rem; 
     border-radius: 0.5rem; 
     width: 80vw; 
-    max-width: 25rem; 
     box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1); 
-}
+    text-align: center;
+  }
 
-  
+  .modal.sm { max-width: 25rem; }
+  .modal.md { max-width: 40rem; }
+  .modal.lg { max-width: 50rem; }
+  .modal.xl { max-width: 60rem; }
+  .modal.full { max-width: 100vh; }
+
+  .modal p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    text-align: justify;
+  }
+
   .content {
     margin: 20px 0;
   }
   
+ /* Contenedor para los botones */ 
   .actions {
     display: flex;
     justify-content: space-between;
+    gap: 0.1rem;
   }
+
+/* Alieación para los botones */
+  .actions.center {
+    justify-content: center;
+  }
+
+  .actions.right {
+      justify-content: flex-end;
+  }
+
+  .actions.left {
+    justify-content: flex-start;
+  }
+  .even {
+      justify-content: space-evenly;
+  }
+
+  .tableContainer {
+    max-height: 300px; 
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.search {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
   

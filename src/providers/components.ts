@@ -1,0 +1,18 @@
+export const components = [
+    { name: "Buttons", path: "/buttons" },
+    { name: "Tag And Pill", path: "/tagPill" },
+    { name: "Login", path: "/login" },
+    { name: "Modales", path: "/modal" },
+    { name: "Inputs", path: "/input" },
+    { name: "Card", path: "/card" },
+    { name: "Progress Bar", path: "/progress" },
+    { name: "Probar Login", path: "/loginpage" },
+    { name: "Accordion", path: "/accordion" },
+    { name: "Nuevo componente", path: "#" },
+    { name: "Nuevo componente", path: "#" },
+    { name: "Nuevo componente", path: "#" },
+    { name: "Nuevo componente", path: "#" },
+    { name: "Nuevo componente", path: "#" },
+    { name: "Nuevo componente", path: "#" },
+    { name: "Nuevo componente", path: "#" },
+  ];

@@ -1,10 +1,10 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useSignal } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import Button from "~/components/atoms/button/button";
-
+import Button from "~/components/atoms/Button/Button";
 
 export default component$(() => {
   const colors = ["primary", "secondary", "success", "info", "warning", "danger", "light"];
+  const isDisabled = useSignal(false);
 
   return (
     <>
@@ -40,14 +40,26 @@ export default component$(() => {
       <h2>Active Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} label={"Active"} color={color as any} variant="active"/>
+          <Button 
+          key={color} 
+          label={"Active"} 
+          color={color as any} 
+          variant="default"
+          disabled={isDisabled.value}
+          />
         ))}
       </div>
 
       <h2>Disabled Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} label={"Disabled"} color={color as any} variant="active" disabled/>
+          <Button 
+          key={color} 
+          label={"Disabled"} 
+          color={color as any} 
+          variant="default"
+          disabled={!isDisabled.value}
+          />
         ))}
       </div>
 

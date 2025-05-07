@@ -1,44 +1,28 @@
-import { component$, Slot, useTask$, useStore } from "@builder.io/qwik";
-import { useLocation, Link } from "@builder.io/qwik-city";
-import "../global.css";
+import { component$, Slot, useSignal } from '@builder.io/qwik';
+import { Sidebar } from '~/components/organisms/Sidebar/Sidebar';
+import { PrimaryNav } from '~/components/molecules/PrimaryNav/PrimaryNav';
+import Button from '~/components/atoms/Button/Button';
+import styles from '~/components/organisms/Sidebar/sidebar.module.css';
 
 export default component$(() => {
-  const location = useLocation();
-  const state = useStore({ isLoginPage: false });
-
-  useTask$(({ track }) => {
-    track(() => location.url.pathname); // Se ejecuta cada vez que cambia la URL
-    state.isLoginPage = location.url.pathname.startsWith("/login");
-  });
+  const isSidebarOpen = useSignal(true); 
+  const toggleIcon = isSidebarOpen.value
+  ? "fa-solid fa-circle-chevron-left fa-2x"
+  : "fa-solid fa-circle-chevron-right fa-2x";
 
   return (
-    <div class="container">
-      {/* Navbar (Oculta si estamos en /login) */}
-      {!state.isLoginPage && (
-        <nav class="navbar">
-          <div class="navbar-brand">
-            <Link href="/">Biblioteca de Componentes SIUD</Link>
-          </div>
-          <div class="navbar-links">
-            <Link href="/buttons">Botones</Link>
-            <Link href="/tagPill">Tag & Pill</Link>
-            <Link href="/login">Login</Link>
-            <Link href="/modal">Modales</Link>
-          </div>
-        </nav>
-      )}
+    <div class={styles.layoutWrapper}>
+      <PrimaryNav/>
+      <Sidebar 
+      isOpen={isSidebarOpen.value} />
 
-      {/* Contenido principal */}
-      <main class="main-content">
+      <div class={styles.sidebarToggleFixed}>
+        <Button icon={toggleIcon} onClick$={() => (isSidebarOpen.value = !isSidebarOpen.value)} />
+      </div>
+
+      <main class={styles.mainContent}>
         <Slot />
       </main>
-
-      {/* Footer (Oculta si estamos en /login) */}
-      {!state.isLoginPage && (
-        <footer class="footer">
-          © {new Date().getFullYear()} Biblioteca de Componentes SIUD - Todos los derechos reservados
-        </footer>
-      )}
     </div>
   );
 });

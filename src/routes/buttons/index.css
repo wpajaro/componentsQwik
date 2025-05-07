@@ -15,19 +15,3 @@
     justify-items: center;
   }
   
-  .card {
-    display: block;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-    background: #f4f4f4;
-  }
-  

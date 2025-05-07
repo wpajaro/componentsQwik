@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import TagPill from "./tagPill";
+import TagPill from "./TagPill"
 import type { JSX } from "@builder.io/qwik"
 
 interface BadgeListProps {
@@ -7,7 +7,6 @@ interface BadgeListProps {
   labels?: string[];
   variant: "badge_heading" | "badge_button";
 }
-
 
 
 export const BadgeList = component$<BadgeListProps>(({ colors = [], labels = [], variant }: BadgeListProps) => {

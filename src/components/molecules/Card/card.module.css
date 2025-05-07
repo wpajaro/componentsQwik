@@ -1,0 +1,135 @@
+/* Contenedor principal del grupo de tarjetas */
+.card-group {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+/* Estilos base de la tarjeta */
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 0.75rem; 
+  overflow: hidden;
+  transition: all 0.25s ease;
+  width: 100%;
+  min-height: 100px;
+  aspect-ratio: 1 / 0.6;
+  border: 1px solid #f0f0f0;
+}
+
+/* Contenido de la tarjeta */
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 0.5rem; 
+}
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  padding: 0.3rem 0;
+  width: 100%;
+}
+.cardLink {
+  font-size: 0.5rem;
+  text-decoration: none;
+  color: var(--primary);
+  height: 100%;
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+/* Efectos hover */
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #e0e0e0;
+}
+.cardLink:hover {
+  text-decoration-line: underline;
+}
+
+
+/* Versión desktop (3 columnas) */
+@media (min-width: 768px) {
+  .card-group {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .card {
+    min-height: 150px; 
+  }
+}
+
+/* Variantes de la tarjeta */
+.card-bordered {
+  border: 1px solid #e0e0e0;
+}
+
+.card-shaded {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card-shaded-hover:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Estructura interna */
+.card-row {
+  flex-direction: row;
+}
+
+.card-column {
+  flex-direction: column;
+}
+
+/* Alineación de contenido */
+.card-content-start { align-items: flex-start; }
+.card-content-center { align-items: center; }
+.card-content-end { align-items: flex-end; }
+
+.card-buttons-start { justify-content: flex-start; }
+.card-buttons-center { justify-content: center; }
+.card-buttons-end { justify-content: flex-end; }
+
+.card-image-start { justify-content: flex-start; }
+.card-image-center { justify-content: center; }
+.card-image-end { justify-content: flex-end; }
+
+/* Espaciado entre botones */
+.card-button-spacing-0 > * + * { margin-left: 0; }
+.card-button-spacing-2 > * + * { margin-left: 0.5rem; }
+.card-button-spacing-4 > * + * { margin-left: 1rem; }
+.card-button-spacing-5 > * + * { margin-left: 1.25rem; }
+
+
+
+/*Estilos para links internos*/
+
+
+/* Componentes internos (header/body/footer) */
+.card-header,
+.card-footer {
+  padding: 0.5rem;
+}
+
+.card-header {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.card-footer {
+  margin-top: auto;
+}

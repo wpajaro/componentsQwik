@@ -5,9 +5,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 15rem;
+    gap: 8rem;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background: url('/images/background2x.png') no-repeat center center/cover;
     position: relative;
     margin: 0;
@@ -22,108 +22,98 @@
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
+    z-index: 0;
 }
 
 .loginContainer {
+    position: relative;
+    z-index: 1;
     font-family: 'Montserrat', sans-serif;
-    background: white;
-    padding: 2rem;
     border-radius: 26px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    height: 601px;
-    text-align: center;
-    max-width: 400px;
+    max-width: 440px;
+    height: 604px;
+    border: none;
+    margin-bottom: 0;
+    padding: 2.5rem;
 }
 
-.logo {
-    width: 80px;
-    margin-bottom: 1rem;
+.loginContainer.card {
+    background-color: white !important;
+    border-radius: 26px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+    transition: none !important;
+    transform: none !important;
 }
+
+.inputGroup label {
+    color: #A7ABB6;
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+
+.inputGroup input {
+    border-radius: 0 !important;
+    border: solid 1px #A7ABB6;
+}
+
+.btnPrimary {
+    background-color: #01A039 !important;
+    border: none !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #FFFFFF;
+    font-size: medium;
+}
+
+.olvidarPassword {
+    color: #01A039 !important;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+    padding-top: 2.5rem;
+}
+
+.olvidarPassword:hover {
+    color: #01A039 !important;
+}
+
+/* Ajustes responsive */
+@media (max-width: 480px) {
+    .container {
+        flex-direction: column;
+        gap: 2rem;
+        height: auto;
+        padding: 1rem;
+        background-attachment: fixed;
+    }
+
+    .loginContainer {
+        flex-direction: column;
+        width: 440px;
+        max-width: 100%;
+        transform: none;
+        margin: 0;
+        max-height: 550px;
+    }
+
+    .olvidarPassword {
+        padding-top: 0.5rem !important;
+    }
+}
+
+.loginContainer p {
+    color: #A7ABB6 !important;
+    font-size: small !important; 
+}
+
 
 h2 {
-    color: #005C20;
-    margin-bottom: 1rem;
+    color: #005C20 !important;
     font-size: 34px;
     font-weight: 600;
 }
 
-.inputGroup {
-    position: relative;
-    margin-bottom: 2rem;
-    text-align: left;
-    width: 100%;
-}
-
-.inputGroup label {
-    position: absolute;
-    top: -8px;
-    left: 10px;
-    background: white;
-    padding: 0 10px;
-    font-size: 0.7rem;
-    color:#A7ABB6;
-    z-index: 1;
-}
-
- p {
-    text-align: left;
-    font-size: 12px;
-    color: #A7ABB6;
-    font-family: 'Montserrat', sans-serif;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
- }
-
-
-.inputGroup input {
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-    padding: 1.3rem 10px;
-    border: 1px solid #A7ABB6;
-    font-size: 14px;
-    background: transparent;
-    outline: none;
-    color: #A7ABB6;
-    text-align: left;
-    box-sizing: border-box;
-}
-
-.inputGroup input:focus {
-    border-bottom-color: #2d572c;
-}
-
-.buttonGroup {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-}
-
-.btn {
-    flex: 1;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.btnPrimary {
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-    padding: 0.95rem;
-    background: #01A039;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: 4px;
-    border: none;
-}
-
-.olvidarPassword {
-    margin-top: 2rem;
-    display: block;
-    color: #2d572c;
-    text-decoration: none;
-    font-size: 0.8rem;
+@media (max-width: 480px) {
+    h2 {
+        font-size: 28px;
+    }
 }

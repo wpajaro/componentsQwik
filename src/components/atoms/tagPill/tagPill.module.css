@@ -79,14 +79,14 @@
 
   /* Colores */
 
-  .primary { background-color: #35bfbf; color: white; }
-  .secondary { background-color: #ff6150; color: white; }
-  .success { background-color: #63d5be; color: white; }
-  .info { background-color: #9560dd; color: white; }
-  .warning { background-color: #f8aa4b; color: black; }
-  .danger { background-color: #f1523d; color: white; }
-  .light { background-color: #F5F6F9; color: black; }
-  .dark { background: #15202b; color: white;}
+  .primary { background-color: var(--primary); color: white; }
+  .secondary { background-color: var(--secondary); color: white; }
+  .success { background-color: var(--success); color: white; }
+  .info { background-color: var(--info); color: white; }
+  .warning { background-color: var(--warning); color: black; }
+  .danger { background-color: var(--danger); color: white; }
+  .light { background-color: var(--light); color: black; }
+  .dark { background: var(--text-light); color: white;}
   
   /* Iconos */
   

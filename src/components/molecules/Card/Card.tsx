@@ -18,6 +18,7 @@ export type CardProps = BaseDivProps & {
   buttonAlign?: "start" | "center" | "end";
   imagenAling?: "start" | "center" | "end";
   buttonSpacing?: "0" | "2" | "4" | "5";
+  background?: string;
 };
 
 // Componente base
@@ -36,6 +37,7 @@ const CardBase = component$<CardProps>((props) => {
     imagenAling = "start",
     buttonSpacing = "2",
     class: className,
+    background,
     ...rest
   } = props;
 
@@ -56,6 +58,7 @@ const CardBase = component$<CardProps>((props) => {
     styles[buttonAlignClass],
     styles[imagenAlignClass],
     styles[buttonSpacingClass],
+    background && styles[`${classPrefix}-bg-${background}`],
     className
   );
 

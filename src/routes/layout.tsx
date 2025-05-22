@@ -13,11 +13,10 @@ export default component$(() => {
   return (
     <div class={styles.layoutWrapper}>
       <PrimaryNav/>
-      <Sidebar 
-      isOpen={isSidebarOpen.value} />
+      <Sidebar isOpen={isSidebarOpen.value} />
 
-      <div class={styles.sidebarToggleFixed}>
-        <Button icon={toggleIcon} onClick$={() => (isSidebarOpen.value = !isSidebarOpen.value)} />
+      <div class={styles.sidebarToggleWrapper} style={{left: isSidebarOpen.value ? '295px' : '70px'}}>
+        <Button icon={toggleIcon} onClick$={() => (isSidebarOpen.value = !isSidebarOpen.value)}/>
       </div>
 
       <main class={styles.mainContent}>

@@ -1,0 +1,114 @@
+/* ========== ESTILOS BASE ========== */
+.accordion {
+  background-color: inherit;
+  border-radius: 12px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* ========== VARIANTES ========== */
+.accordionDefault {
+  border: 1px solid #e0e0e0;
+}
+
+.accordionFlush {
+  background: transparent;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.accordionDark {
+  background-color: rgba(0, 0, 0, 0.65);
+  color: var(--text-dark);
+}
+
+.accordionOutline {
+  border: 2px solid var(--primary);
+}
+
+/* ========== ESQUEMAS DE COLOR ========== */
+.accordionPrimary {
+  --accordion-bg: var(--primary);
+  --accordion-active-bg: var(--primary-dark);
+}
+
+.accordionSecondary {
+  --accordion-bg: var(--secondary);
+  --accordion-active-bg: var(--secondary-dark);
+}
+
+/* ========== ESTRUCTURA ========== */
+
+.accordionItem {
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.accordionItem:last-child{
+  border-radius: 0;
+}
+
+.accordionHeader {
+  height: fit-content;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 0px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none !important;
+  outline: none !important;
+}
+
+.accordionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  flex-grow: 1;
+  margin: 0;
+}
+
+/* ========== ESTADOS INTERACTIVOS ========== */
+.accordionHeader:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.accordionDark .accordionHeader:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.accordionHeaderActive {
+  background-color: var(--accordion-bg) !important;
+  color: rgb(206, 21, 21) !important;
+}
+
+/* ========== CONTENIDO ========== */
+.accordionContent {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 14px;
+  transition: height 2s;
+}
+
+.accordionContent {
+  transition-timing-function: ease-out;
+}
+
+.accordionContentVisible {
+  max-height: 1000px;
+  padding: 12px;
+}
+
+/* ========== ICONOS ========== */
+.accordion-icon {
+  margin-right: 10px;
+  display: inline-flex;
+}
+
+.accordion-toggle-icon {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.accordion-toggle-icon-open {
+  transform: rotate(180deg);
+}

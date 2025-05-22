@@ -2,8 +2,9 @@ import { component$ } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
 import { Icon } from '~/components/atoms/Icon/Icon';
 import type { PropFunction } from '@builder.io/qwik';
-import { Accordion } from '~/components/molecules/Accordion/Accordion';
+import { Acordeon } from '~/components/molecules/Accordion/Acordeon';
 import styles from './sidebar.module.css';
+
 
 interface SidebarProps {
   onToggleSidebar$?: PropFunction<() => void>;
@@ -15,18 +16,31 @@ export const Sidebar = component$<SidebarProps>(({ isOpen }) => {
   const menuItems = [
     {
       key: 'atoms',
-      title: 'Atomos',
+      title: 'ÁTOMOS',
       items: [
         { key: 'buttons', title: 'Botones', href: '/buttons' },
-        { key: 'modals', title: 'Modales', href: '/modal' },
+        { key: 'input', title: 'Input', href: '/input' },
+        { key: 'tag', title: 'Tag & Pill', href: '/tagPill' },
       ]
     },
     {
       key: 'molecules',
-      title: 'Moleculas',
+      title: 'MOLÉCULAS',
       items: [
+        { key: 'accordion', title: 'Accordion', href: '/accordion' },
+        { key: 'alert', title: 'Alerts', href: '/#' },
         { key: 'card', title: 'Tarjetas', href: '/card' },
         { key: 'progress', title: 'Progreso', href: '/progress' },
+      ]
+    },
+    {
+      key: 'organism',
+      title: 'ORGANISMOS',
+      items: [
+        { key: 'loginP', title: 'Login Prueba', href: '/login' },
+        { key: 'login', title: 'Login', href: '/loginpage' },
+        { key: 'modals', title: 'Modales', href: '/modal' },
+        { key: 'sidenav', title: 'Sidenav', href: '/#' },
       ]
     },
   ]
@@ -38,16 +52,24 @@ export const Sidebar = component$<SidebarProps>(({ isOpen }) => {
       <nav class={styles.sidebarNav}>
         <div class={styles.sectionTitulo}>
           <h5>
-            <Icon name="fa-solid fa-border-all" size='xl' />
+            <Icon name="fa-solid fa-border-all" size='xl'/>
             Componentes 
           </h5>
         </div> 
         <Link href='/'>
           {isOpen && <span>Inicio</span>}
         </Link>
-        <Accordion items={menuItems} appearance='default' defaultOpenKeys={['components', 'docs']}
-        onItemClick$={(key) => console.log('Item seleccionado:', key)}>
-        </Accordion>
+        <section>
+          <Acordeon 
+            variant='flush'
+            colorScheme='light'
+            items={menuItems}
+            defaultOpenKeys={['components', 'docs']}
+            multiple={true}
+            bordered={false}
+            onItemClick$={(key) => console.log('Item seleccionado:', key)}>
+          </Acordeon>
+        </section>
       </nav>
     </aside>
   );

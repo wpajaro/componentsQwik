@@ -33,6 +33,6 @@ export default component$(() => {
         </p>
       </Card.Body>
     </Card>
-
+  
   );
 });

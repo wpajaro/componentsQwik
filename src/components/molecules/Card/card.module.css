@@ -1,11 +1,3 @@
-/* Contenedor principal del grupo de tarjetas */
-.card-group {
-  display: grid;
-  gap: 10px;
-  width: 100%;
-  grid-template-columns: repeat(1, 1fr);
-}
-
 /* Estilos base de la tarjeta */
 .card {
   display: flex;
@@ -16,18 +8,29 @@
   transition: all 0.25s ease;
   width: 100%;
   min-height: 100px;
-  aspect-ratio: 1 / 0.6;
-  border: 1px solid #f0f0f0;
+  border: 1px solid #faf9f9;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+/* Contenedor principal del grupo de tarjetas */
+.card-group {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  grid-template-columns: repeat(1, 1fr);
 }
 
 /* Contenido de la tarjeta */
 .card-body {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  padding: 0.5rem; 
+  flex-direction: column;
+  width: 100%;
+  gap: 0;
+  overflow: hidden;
+  padding: 1rem 1rem 0;
+  margin: 0;
 }
+
 .card-title {
   font-size: 0.95rem;
   font-weight: 400;
@@ -47,15 +50,9 @@
   justify-content: center;
 }
 /* Efectos hover */
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: #e0e0e0;
-}
 .cardLink:hover {
   text-decoration-line: underline;
 }
-
 
 /* Versión desktop (3 columnas) */
 @media (min-width: 768px) {
@@ -79,7 +76,10 @@
 }
 
 .card-shaded-hover:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #e0e0e0;
 }
 
 .card-hover-lift:hover {
@@ -108,16 +108,11 @@
 .card-image-center { justify-content: center; }
 .card-image-end { justify-content: flex-end; }
 
-/* Espaciado entre botones */
+/*Espaciado entre botones*/
 .card-button-spacing-0 > * + * { margin-left: 0; }
 .card-button-spacing-2 > * + * { margin-left: 0.5rem; }
 .card-button-spacing-4 > * + * { margin-left: 1rem; }
 .card-button-spacing-5 > * + * { margin-left: 1.25rem; }
-
-
-
-/*Estilos para links internos*/
-
 
 /* Componentes internos (header/body/footer) */
 .card-header,
@@ -132,4 +127,14 @@
 
 .card-footer {
   margin-top: auto;
+}
+
+.card-bg-primary {
+  background-color: var(--primary);
+}
+.card-bg-dark {
+  background-color: #212529;
+}
+.card-bg-success {
+  background-color: #28a745;
 }

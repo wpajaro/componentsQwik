@@ -4,7 +4,7 @@
     font-size: 0.75rem;
     cursor: pointer;
     border: none;
-    margin: 0.5rem;
+    margin: 0;
 }
 
 /*Variantes Fill */
@@ -79,17 +79,40 @@
     box-shadow: none;
     padding: 0.5rem;
 }
-  
-.iconOnly:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-/*
-Primary	#04a139 (Verde primario)
-Secondary #56ad2d (Verde secundario)
-Success	#a9bb21 (Verde oliva)
-Info	#fec915 (Amarillo primario)
-Warning	#f48b16 (Naranja secundario)
-Danger	#e21018 (Rojo primario)
-Light	#ea4e16 (Rojo anaranjado)
 
-*/
+.fullWidth {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    text-align: left;
+    border-radius: 0px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    margin: 0 !important;
+  }
+ 
+  .fullWidth.light {
+    color: #939396;
+    border-radius: 8px;
+  }
+  
+  .suffix {
+    margin-left: auto;
+    display: inline-flex;
+  }
+
+  .appearanceAccordion {
+  background-color: transparent;
+  border: none;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.25s ease;
+}

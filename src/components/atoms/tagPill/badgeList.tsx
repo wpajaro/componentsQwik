@@ -8,7 +8,6 @@ interface BadgeListProps {
   variant: "badge_heading" | "badge_button";
 }
 
-
 export const BadgeList = component$<BadgeListProps>(({ colors = [], labels = [], variant }: BadgeListProps) => {
 
   return (

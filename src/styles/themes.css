@@ -10,3 +10,11 @@
     --text-dark: white;
   }
   
+  .icon-primary { color: var(--primary) !important; }
+  .icon-secondary { color: var(--secondary) !important; }
+  .icon-success { color: var(--success) !important; }
+  .icon-info { color: var(--info) !important; }
+  .icon-warning { color: var(--warning) !important; }
+  .icon-danger { color: var(--danger) !important; }
+  .icon-light { color: var(--light) !important; }
+  

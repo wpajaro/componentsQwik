@@ -1,0 +1,43 @@
+.layoutGrid {
+  display: grid;
+  grid-template-areas:
+    'topbar topbar'
+    'sidebar content';
+  grid-template-columns: 70px 90px 1fr;
+  grid-template-rows: 90px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layouTopbar {
+  grid-area: topbar;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.layoutSidebarArea {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  background: #f8f8f8;
+}
+
+.layoutContentArea {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.layoutSidebarToggleWrapper {
+  padding: 8px 16px;
+}
+
+.layoutMainContent {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}

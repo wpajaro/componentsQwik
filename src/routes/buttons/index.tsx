@@ -12,7 +12,7 @@ export default component$(() => {
       <h2>Default Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} type="fill" variant="default" />
+          <Button key={color} color={color as any} type="fill" variant="default" fullWidth={false} appearance="clasico"/>
         ))}
       </div>
 

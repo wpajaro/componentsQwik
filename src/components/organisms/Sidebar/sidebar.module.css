@@ -3,7 +3,11 @@
   height: 100vh;
   overflow: hidden;
 }
-
+.layoutPage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 .primaryNav {
   background-color: #0a3001;
   width: 70px;

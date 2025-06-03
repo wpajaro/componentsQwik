@@ -14,6 +14,7 @@ interface ButtonProps {
   suffix?: JSX.Element;
 }
 
+// Agregar margin 5px de lado y lado
 export default component$(
     ({ 
       label, 

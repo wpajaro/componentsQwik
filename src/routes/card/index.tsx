@@ -6,7 +6,7 @@ export default component$(() => {
   return (
     <Card
       bordered
-      shaded="hover"
+      shaded={true}
       direction="column"
       size="lg"
       width={800}

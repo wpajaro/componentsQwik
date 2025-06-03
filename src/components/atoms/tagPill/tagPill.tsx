@@ -6,15 +6,7 @@ interface tag_pillProps {
     label?: string;
     onClick?: QRL<() => void>;
     color?: "primary" | "secondary" | "success" | "info" | "warning" | "danger" | "light" | "dark";
-    type?: 
-            "contextual" 
-            | "pill" 
-            | "number_badge" 
-            | "number-pill" 
-            | "badge_icons" 
-            | "pill_icons" 
-            | "badge_heading"
-            | "badge_button";
+    type?: "contextual" | "pill" | "number_badge" | "number-pill" | "badge_icons" | "pill_icons" | "badge_heading" | "badge_button";
     icon?: string;
     headingLevel?: string;
 }

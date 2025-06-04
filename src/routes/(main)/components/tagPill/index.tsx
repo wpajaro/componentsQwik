@@ -1,8 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import TagPill from "~/components/atoms/TagPill/TagPill";
+import TagPill from "@/components/atoms/TagPill/TagPill";
 import type { JSX } from "@builder.io/qwik"
-import { BadgeList } from "~/components/atoms/TagPill/BadgeList";
+import { BadgeList } from "@/components/atoms/TagPill/BadgeList";
 
 
 export default component$(() => {

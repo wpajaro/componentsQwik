@@ -1,5 +1,5 @@
 import { component$ } from '@builder.io/qwik';
-import ProgressBar from '~/components/molecules/Progress/ProgressBar';
+import ProgressBar from '@/components/molecules/Progress/ProgressBar';
 
 export default component$(() => {
   return (

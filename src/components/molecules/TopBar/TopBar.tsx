@@ -1,5 +1,5 @@
 import { component$, $, useSignal, type QRL } from '@builder.io/qwik';
-import Button from '~/components/atoms/Button/Button';
+import Button from '@/components/atoms/Button/Button';
 //import { Acordeon, type AccordionItem } from '../Accordion/Acordeon';
 //import { Icon } from '~/components/atoms/Icon/Icon';
 import styles from './topbar.module.css'

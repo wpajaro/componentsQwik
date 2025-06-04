@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik';
-import { Logo } from '~/components/atoms/Logo/Logo';
-import { Icon } from '~/components/atoms/Icon/Icon';
-import TagPill from '~/components/atoms/TagPill/TagPill';
+import { Logo } from '@/components/atoms/Logo/Logo';
+import { Icon } from '@/components/atoms/Icon/Icon';
+import TagPill from '@/components/atoms/TagPill/TagPill';
 import styles from '../../organisms/Sidebar/sidebar.module.css';
 
 export const PrimaryNav = component$(() => {

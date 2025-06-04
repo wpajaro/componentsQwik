@@ -1,6 +1,7 @@
 import { component$, Slot, type QRL } from "@builder.io/qwik";
-import styles from "./login.module.css";
 import { Image } from "@unpic/qwik";
+import { Card } from "@/components/molecules/Card/Card";
+import styles from "./login.module.css";
 
 interface LoginContainerProps {
   verticalLogoSrc?: string;
@@ -27,7 +28,16 @@ export const LoginContainer = component$((props: LoginContainerProps) => {
           />
         </div>
 
-        <div class={`${styles.loginContainer} card m-4`}>
+          <Card
+          bordered={true}
+          hoverLift={false}
+          direction="column"
+          size="sm"
+          width={'438px'}
+          height='604px'
+          radius={26}
+          contentAlign="center"
+        >
           <Image
             src={props.logoSrc}
             alt="Logo"
@@ -38,10 +48,10 @@ export const LoginContainer = component$((props: LoginContainerProps) => {
           <h2 class="card-title text-center mb-3">{props.title}</h2>
           <p class="card-text custom-text-color mb-4">{props.subtitle}</p>
 
-          <form preventdefault:submit onSubmit$={props.onSubmit$}>
+          <form preventdefault:submit onSubmit$={props.onSubmit$} class={styles.form}>
             <Slot /> {/* Para poder insertar los inputs y el botón */}
           </form>
-        </div>
+        </Card>
       </div>
     </div>
   );

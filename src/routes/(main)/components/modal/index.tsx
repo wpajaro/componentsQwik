@@ -1,10 +1,10 @@
 import { component$, $, useSignal } from "@builder.io/qwik";
-import Modal from "~/components/organisms/Modal/Modal";
-import Button from "~/components/atoms/Button/Button";
+import Modal from "@/components/organisms/Modal/Modal";
+import Button from "@/components/atoms/Button/Button";
 import { Image } from "@unpic/qwik";
-import styles from "~/components/organisms/Modal/modal.module.css"
+import styles from "@/components/organisms/Modal/modal.module.css"
 //import { title } from "process";
-import { Card } from "~/components/molecules/Card/Card";
+import { Card } from "@/components/molecules/Card/Card";
 
 export default component$(() => {
     // Variable para almacenar el ID del modal abierto (null si ninguno está abierto)

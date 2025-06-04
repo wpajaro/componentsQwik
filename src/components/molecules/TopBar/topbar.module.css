@@ -1,29 +1,14 @@
-.wrapper{
-    max-width: 95%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 70px 90px 1fr;
-    grid-gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
-}
-
-.wrapper > div {
-    padding: 1em;
-    background-color: rgba(247, 7, 7, 0.8);
-}
 
 .topbar {
-  grid-column: 2 / 4;
-  grid-row: 1;  
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 20px;
   background-color: white;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   height: 90px;
   z-index: 10;
   position: relative;
+  padding: 0 20px;
 }
 
 .layoutPrimaryNav {

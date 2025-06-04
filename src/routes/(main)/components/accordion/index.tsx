@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik';
-import { Icon } from '~/components/atoms/Icon/Icon';
-import { Acordeon, type AccordionItem } from '~/components/molecules/Accordion/Acordeon';
-import { Card, CardBody, CardHeader } from '~/components/molecules/Card/Card';
+import { Icon } from '@/components/atoms/Icon/Icon';
+import { Acordeon, type AccordionItem } from '@/components/molecules/Accordion/Acordeon';
+import { Card, CardBody, CardHeader } from '@/components/molecules/Card/Card';
 export default component$(() => {
   
   const accordionItems: AccordionItem[] = [

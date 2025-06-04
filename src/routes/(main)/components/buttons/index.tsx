@@ -1,10 +1,11 @@
 import { component$, useSignal } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import Button from "~/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button/Button";
 
 export default component$(() => {
   const colors = ["primary", "secondary", "success", "info", "warning", "danger", "light"];
   const isDisabled = useSignal(false);
+  const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
   return (
     <>
@@ -12,28 +13,47 @@ export default component$(() => {
       <h2>Default Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} type="fill" variant="default" fullWidth={false} appearance="clasico"/>
+          <Button 
+            key={color} 
+            color={color as any} 
+            type="fill" 
+            variant="default" 
+            fullWidth={false} 
+            appearance="clasico"
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
 
       <h2>Large Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} variant="large" />
+          <Button 
+            key={color} 
+            color={color as any} 
+            variant="large" 
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
 
       <h2>Small Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} variant="small" />
+          <Button 
+            key={color} 
+            color={color as any} 
+            variant="small" 
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
 
       <h2>Extra Small Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} variant="extra-small"/>
+          <Button 
+            key={color} 
+            color={color as any} 
+            variant="extra-small" 
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
 
@@ -66,42 +86,72 @@ export default component$(() => {
       <h2>Outline Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} type="outline" variant="default"/>
+          <Button 
+            key={color} 
+            color={color as any} 
+            type="outline" 
+            variant="default"
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
 
       <h2>Bold Border Outline Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} type="outline" variant="bold-border"/>
+          <Button 
+            key={color} 
+            color={color as any} 
+            type="outline" 
+            variant="bold-border"
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
 
       <h2>Outline Large Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} type="outline" variant="large"/>
+          <Button 
+            key={color} 
+            color={color as any} 
+            type="outline" 
+            variant="large"
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
 
       <h2>Outline Large Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} type="outline" variant="large"/>
+          <Button 
+            key={color} 
+            color={color as any} 
+            type="outline" 
+            variant="large"
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
 
       <h2>Outline Small Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} type="outline" variant="small"/>
+          <Button 
+            key={color} 
+            color={color as any} 
+            type="outline" 
+            variant="small"
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
 
       <h2>Outline Extra-Small Buttons</h2>
       <div>
         {colors.map((color) => (
-          <Button key={color} color={color as any} type="outline" variant="extra-small"/>
+          <Button 
+            key={color} 
+            color={color as any} 
+            type="outline" 
+            variant="extra-small"
+            label={`${capitalize(color)} Button`}/>
         ))}
       </div>
     </>

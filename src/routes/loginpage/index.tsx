@@ -1,9 +1,8 @@
-// src/routes/loginpage/index.tsx
 import { component$, $, useSignal, useStore } from "@builder.io/qwik";
-import { LoginContainer } from "~/components/organisms/Login/LoginContainer";
-import Button from "~/components/atoms/Button/Button";
-import Input from "~/components/atoms/Input/Input";
-import { loginServices } from "~/services/auth/handleLogin";
+import { LoginContainer } from "@/components/organisms/Login/LoginContainer";
+import Button from "@/components/atoms/Button/Button";
+import Input from "@/components/atoms/Input/Input";
+import { loginServices } from "@/services/auth/handleLogin";
 import { useNavigate } from "@builder.io/qwik-city";
 
 export default component$(() => {
@@ -50,6 +49,8 @@ export default component$(() => {
         type="text"
         value={form.username}
         onChange$={(value) => (form.username = value)}
+        height="55px"
+        radius="0px"
       />
       <Input
         id="password"
@@ -58,6 +59,8 @@ export default component$(() => {
         type="password"
         value={form.password}
         onChange$={(value) => (form.password = value)}
+        height="55px"
+        radius="0px"
       />
       <div class="d-grid gap-2 mb-3">
         <Button

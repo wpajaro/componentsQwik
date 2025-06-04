@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
-import { Card } from "~/components/molecules/Card/Card";
-import { components } from '~/providers/components';
-import styles from "~/components/molecules/Card/card.module.css";
+import { Card } from "@/components/molecules/Card/Card";
+import { components } from '@/providers/components';
+import styles from "@/components/molecules/Card/card.module.css";
 
 export default component$(() => {
   return (

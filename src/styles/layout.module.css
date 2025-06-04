@@ -1,43 +1,43 @@
-.layoutGrid {
-  display: grid;
-  grid-template-areas:
-    'topbar topbar'
-    'sidebar content';
-  grid-template-columns: 70px 90px 1fr;
-  grid-template-rows: 90px 1fr;
+.layoutPage {
   height: 100vh;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.layouTopbar {
-  grid-area: topbar;
+.header {
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
   z-index: 10;
+  height: 90px;
+  align-items: center;
 }
 
-.layoutSidebarArea {
-  grid-area: sidebar;
+.bodyContainer {
   display: flex;
-  flex-direction: column;
-  background: #f8f8f8;
-}
-
-.layoutContentArea {
-  grid-area: content;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-.layoutSidebarToggleWrapper {
-  padding: 8px 16px;
-}
-
-.layoutMainContent {
   flex: 1;
-  padding: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.primaryNav {
+  width: 70px;
+  background-color: #1d1f25;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarToggleWrapper {
+  position: absolute;
+  top: 80px;
+  left: 295px;
+  transition: left 0.3s ease;
+  z-index: 100;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 1.5rem;
   overflow-y: auto;
+  background-color: #f9f9f9;
 }

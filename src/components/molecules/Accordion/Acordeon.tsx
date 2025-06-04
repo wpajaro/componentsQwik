@@ -2,12 +2,11 @@ import { component$, $, useSignal, Slot } from '@builder.io/qwik';
 import type { PropFunction } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
 import type { JSX } from '@builder.io/qwik';
-import Button from '~/components/atoms/Button/Button';
-
+import Button from '@/components/atoms/Button/Button';
 import styles from './accordion2.module.css';
 
-export type AccordionVariant = 
-  | 'default' 
+export type AccordionVariant =
+  | 'default'
   | 'flush'
   | 'dark'
   | 'outline'
@@ -16,7 +15,7 @@ export type AccordionVariant =
   | 'multi-toggle'
   | 'external-trigger';
 
-export type AccordionColorScheme = 
+export type AccordionColorScheme =
   | 'primary'
   | 'secondary'
   | 'success'
@@ -30,11 +29,12 @@ export interface AccordionItem {
   key: string;
   title: string;
   content?: string | JSX.Element;
-  items?: Array<{ 
-    key: string; 
-    title: string; 
-    href?: string 
+  items?: Array<{
+    key: string;
+    title: string;
+    href?: string;
     isActive?: boolean;
+    newTab?: boolean;
   }>;
   icon?: any;
   triggerId?: string;
@@ -60,20 +60,13 @@ export const Acordeon = component$<AccordionProps>(({
   variant = 'default',
   colorScheme = 'primary',
   items: initialItems,
-  //iconPosition = 'right',
   multiple = false,
   bordered = true,
   useCustomTriggers = false,
   accordionId = 'accordion-' + Math.random().toString(36).substring(2, 9),
   defaultOpenKeys = [],
   onItemClick$,
-  //iconOpen,
-  //iconClosed
 }) => {
-
-  //const iconOpenClass = "fa fa-chevron-up";
-  //const iconClosedClass = "fa fa-chevron-down";
-
   const itemsSignal = useSignal(
     initialItems.map(item => ({
       ...item,
@@ -84,14 +77,29 @@ export const Acordeon = component$<AccordionProps>(({
           {item.items.map(subItem => (
             <li key={subItem.key}>
               {subItem.href ? (
-                <Link 
-                  href={subItem.href}
-                  class={[
-                    styles.accordionHeader,
-                    subItem.isActive && styles.accordionHeaderActive,
-                  ]}>
-                  {subItem.title}
-                </Link>
+                subItem.newTab ? (
+                  <a
+                    href={subItem.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={[
+                      styles.accordionHeader,
+                      subItem.isActive && styles.accordionHeaderActive,
+                    ]}
+                  >
+                    {subItem.title}
+                  </a>
+                ) : (
+                  <Link
+                    href={subItem.href}
+                    class={[
+                      styles.accordionHeader,
+                      subItem.isActive && styles.accordionHeaderActive,
+                    ]}
+                  >
+                    {subItem.title}
+                  </Link>
+                )
               ) : (
                 <span>{subItem.title}</span>
               )}
@@ -119,22 +127,22 @@ export const Acordeon = component$<AccordionProps>(({
     onItemClick$?.(itemsSignal.value[index].key);
   });
 
-  const ChevronIcon = component$<{ open : boolean }> (
-    ({ open }) => (
-      <span class='accordion-toggle-icon'>
-        <i class={`fa ${open ? 'fa-chevron-up' : 'fa-chevron-down'}`}/>
-      </span>
-    )
-  )
+  const ChevronIcon = component$<{ open: boolean }>(({ open }) => (
+    <span class='accordion-toggle-icon'>
+      <i class={`fa ${open ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
+    </span>
+  ));
 
   return (
-    <div class={[
-      styles.accordion,
-      styles[`accordion-${variant}`],
-      styles[`scheme-${colorScheme}`],
-      bordered && styles.accordionBordered,
-    ]} id={accordionId}>
-      
+    <div
+      class={[
+        styles.accordion,
+        styles[`accordion-${variant}`],
+        styles[`scheme-${colorScheme}`],
+        bordered && styles.accordionBordered,
+      ]}
+      id={accordionId}
+    >
       {(variant === 'horizontal' || variant === 'external-trigger' || variant === 'multi-toggle') && (
         <div class={styles.externalTriggers}>
           {itemsSignal.value.map((item, i) => (
@@ -151,7 +159,7 @@ export const Acordeon = component$<AccordionProps>(({
       )}
 
       {itemsSignal.value.map((item, index) => (
-        <div 
+        <div
           key={item.key}
           class={[
             styles.accordionItem,
@@ -180,7 +188,7 @@ export const Acordeon = component$<AccordionProps>(({
           >
             <div class={styles.accordionBody}>
               {item.content || <Slot name={`content-${index}`} />}
-            </div>  
+            </div>
           </div>
         </div>
       ))}

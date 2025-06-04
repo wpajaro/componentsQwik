@@ -37,14 +37,6 @@
     padding: 2.5rem;
 }
 
-.loginContainer.card {
-    background-color: white !important;
-    border-radius: 26px !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
-    transition: none !important;
-    transform: none !important;
-}
-
 .inputGroup label {
     color: #A7ABB6;
     font-size: 0.75rem;
@@ -76,6 +68,24 @@
     color: #01A039 !important;
 }
 
+.loginContainer p {
+    color: #A7ABB6 !important;
+    font-size: small !important; 
+}
+
+
+h2 {
+    color: #005C20 !important;
+    font-size: 34px;
+    font-weight: 600;
+}
+
+.form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Ajustes responsive */
 @media (max-width: 480px) {
     .container {
@@ -98,22 +108,9 @@
     .olvidarPassword {
         padding-top: 0.5rem !important;
     }
-}
 
-.loginContainer p {
-    color: #A7ABB6 !important;
-    font-size: small !important; 
-}
-
-
-h2 {
-    color: #005C20 !important;
-    font-size: 34px;
-    font-weight: 600;
-}
-
-@media (max-width: 480px) {
     h2 {
         font-size: 28px;
     }
 }
+

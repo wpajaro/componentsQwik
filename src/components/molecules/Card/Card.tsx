@@ -8,10 +8,12 @@ type BaseDivProps = QwikIntrinsicElements["div"];
 export type CardProps = BaseDivProps & {
   as?: keyof HTMLElementTagNameMap;
   bordered?: boolean;
+  radius?: string | number;
   shaded?: boolean | "hover";
   direction?: "row" | "column";
   size?: "sm" | "md" | "lg";
   width?: string | number;
+  height?: string | number;
   classPrefix?: string;
   hoverLift?: boolean;
   contentAlign?: "start" | "center" | "end";
@@ -62,8 +64,10 @@ const CardBase = component$<CardProps>((props) => {
     className
   );
 
-  const style = {
+const style = {
     width: typeof width === "number" ? `${width}px` : width,
+    height: typeof props.height === "number" ? `${props.height}px` : props.height,
+    borderRadius: typeof props.radius === "number" ? `${props.radius}px` : props.radius,
   };
 
   return jsx(

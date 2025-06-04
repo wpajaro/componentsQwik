@@ -1,6 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { Card } from "~/components/molecules/Card/Card";
-//import Button from "~/components/atoms/Button/Button";
+import { Card } from "@/components/molecules/Card/Card";
 
 export default component$(() => {
   return (

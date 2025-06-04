@@ -1,7 +1,7 @@
 import { component$, useSignal, useOnWindow, $ } from "@builder.io/qwik";
 import styles from "./login.module.css";
 import { Image } from "@unpic/qwik";
-import Button from "~/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button/Button";
 
 export default component$(() => {
   const esMovil = useSignal(false);

@@ -1,6 +1,6 @@
 // src/components/navbar/navbar.tsx
 import { component$ } from "@builder.io/qwik";
-import { DropdownMenu } from "~/components/molecules/Menu/DropdownMenu";
+import { DropdownMenu } from "@/components/molecules/Menu/DropdownMenu";
 import { Link } from "@builder.io/qwik-city";
 
 export const Navbar = component$(() => {

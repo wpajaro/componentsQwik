@@ -1,0 +1,5 @@
+.cardover:hover {
+  background-color: #e6f9f0;
+  border-color: #04a139;
+  transition: background-color 0.3s, border-color 0.3s;
+}

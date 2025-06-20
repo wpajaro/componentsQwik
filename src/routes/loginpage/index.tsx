@@ -26,7 +26,7 @@ export default component$(() => {
       successMessage.value = result.message || "Inicio de sesión exitoso ✅";
       
       setTimeout(() => {
-        navigate("/buttons");
+        navigate("/modulos"); 
       }, 1500);
     } else {
       errorMessage.value = result.message || "Error al iniciar sesión ❌";

@@ -1,51 +1,66 @@
-// src/services/auth/handleLogin.tsx
 import type { LoginResult } from "./autht";
+import { jwtDecode } from "jwt-decode";
+import { clearCacheModulos, setCachedModulos } from "@/context/contextModule";
+import { apiClient } from "../apiClient";
 
-/**
- * Servicio para realizar el login de usuarios
- * @param username Nombre de usuario o identificación
- * @param password Contraseña del usuario
- * @returns Promise<LoginResult> - Resultado del login
- */
+/** Interfaces */
+export interface DecodedUser {
+  username: string;
+  name: string;
+}
+
+export interface JwtPayload {
+  user_id: number;
+  exp: number;
+  iat: number;
+  jti?: string;
+  token_type?: string;
+  user: string | DecodedUser;
+  [key: string]: any;
+}
+
+/** Auth: Login */
 export const loginServices = async (
   username: string,
   password: string
 ): Promise<LoginResult> => {
   try {
-    const response = await fetch(
-      "https://secondly-sound-bear.ngrok-free.app/api/auth/token/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: null,
-          data: { username, password },
-        }),
-        mode: "cors",
-      }
-    );
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      return {
-        success: false,
-        message: errorData.message || errorData.detail || "Error en la autenticación",
-      };
-    }
+    const response = await fetch("http://localhost:8000/api/auth/token/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user: null, data: { username, password } }),
+      mode: "cors",
+    });
 
     const result = await response.json();
 
-    // Guardar tokens en localStorage
-    localStorage.setItem("accessToken", result.data.access);
-    localStorage.setItem("refreshToken", result.data.refresh);
+    if (!response.ok) {
+      return {
+        success: false,
+        message: result.message || result.detail || "Error en la autenticación",
+      };
+    }
+
+    const accessToken = result.data.access;
+    const refreshToken = result.data.refresh;
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
+
+    try {
+      const res = await apiClient.get("/api/modules/user", {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      localStorage.setItem("modulosUsuario", JSON.stringify(res.data));
+      // o si prefieres: setCachedModulos(res.data);
+    } catch (err) {
+      console.error("No se cargaron los módulos", err);
+    }
 
     return {
       success: true,
       data: {
-        accessToken: result.data.access,
-        refreshToken: result.data.refresh,
+        accessToken,
+        refreshToken,
       },
       message: result.message || "Login exitoso",
     };
@@ -58,44 +73,26 @@ export const loginServices = async (
   }
 };
 
-/**
- * Servicio para refrescar el token de acceso
- * @returns Promise<boolean> - Indica si el refresh fue exitoso
- */
+/** Auth: Refresh token */
 export const refreshTokenService = async (): Promise<boolean> => {
   const refreshToken = localStorage.getItem("refreshToken");
-  if (!refreshToken) {
-    console.error("No se encontró refresh token");
-    return false;
-  }
+  if (!refreshToken) return false;
 
   try {
-    const response = await fetch(
-      "https://secondly-sound-bear.ngrok-free.app/api/auth/refresh-token/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: null,
-          data: { refresh: refreshToken },
-        }),
-        mode: "cors",
-      }
-    );
+    const response = await fetch("https://secondly-sound-bear.ngrok-free.app/api/auth/refresh-token/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user: null, data: { refresh: refreshToken } }),
+      mode: "cors",
+    });
 
     const result = await response.json();
 
     if (response.ok && result.data?.access) {
-      // Actualizar tokens en localStorage
       localStorage.setItem("accessToken", result.data.access);
-      
-      // Si el backend devuelve un nuevo refresh token, actualizarlo
       if (result.data.refresh) {
         localStorage.setItem("refreshToken", result.data.refresh);
       }
-      
       return true;
     }
 
@@ -107,29 +104,62 @@ export const refreshTokenService = async (): Promise<boolean> => {
   }
 };
 
-/**
- * Función para cerrar sesión
- * Elimina los tokens y redirige al login
- */
+/** Cerrar sesión */
 export const logout = (): void => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
-  // Redirigir a la página de login
+  clearCacheModulos();
   window.location.href = "/login";
 };
 
-/**
- * Verifica si hay un usuario autenticado
- * @returns boolean - True si hay un token de acceso válido
- */
+/** Verifica autenticación */
 export const isAuthenticated = (): boolean => {
-  return !!localStorage.getItem("accessToken");
+  const token = getAccessToken();
+  if (!token) return false;
+
+  const decoded = getUserFromToken();
+  return decoded ? !isTokenExpired(decoded.exp) : false;
 };
 
-/**
- * Obtiene el token de acceso actual
- * @returns string | null - Token de acceso o null si no existe
- */
+/** Obtener token de acceso */
 export const getAccessToken = (): string | null => {
+  if (typeof window === "undefined") return null;
   return localStorage.getItem("accessToken");
+};
+
+/** Verifica si el token ha expirado */
+export const isTokenExpired = (exp: number): boolean => {
+  const currentTime = Math.floor(Date.now() / 1000);
+  return exp < currentTime;
+};
+
+/** Obtener y decodificar usuario del token */
+export const getUserFromToken = (): JwtPayload | null => {
+  const token = getAccessToken();
+  if (!token) return null;
+
+  try {
+    const decoded = jwtDecode<JwtPayload>(token);
+
+    // Parsear 'user' si viene como string
+    if (typeof decoded.user === "string") {
+      const parsed = JSON.parse(decoded.user.replace(/'/g, '"'));
+      if (parsed && typeof parsed === "object") {
+        decoded.user = parsed;
+      } else {
+        return null;
+      }
+    }
+
+    return decoded;
+  } catch (err) {
+    console.error("Error al decodificar token:", err);
+    return null;
+  }
+};
+
+/** Obtener nombre del usuario directamente */
+export const getUserName = (): string | null => {
+  const user = getUserFromToken();
+  return typeof user?.user === 'object' ? user.user.name : null;
 };

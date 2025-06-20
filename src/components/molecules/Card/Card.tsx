@@ -5,7 +5,7 @@ import styles from "./card.module.css";
 
 type BaseDivProps = QwikIntrinsicElements["div"];
 
-export type CardProps = BaseDivProps & {
+export type CardProps = (QwikIntrinsicElements['div'] | QwikIntrinsicElements['a']) & {
   as?: keyof HTMLElementTagNameMap;
   bordered?: boolean;
   radius?: string | number;

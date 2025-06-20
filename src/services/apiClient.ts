@@ -1,45 +1,63 @@
-// src/services/apiClient.ts
-import { refreshTokenService } from "./auth/handleLogin";
+import { getAccessToken, refreshTokenService } from './auth/handleLogin';
 
-const API_BASE_URL = "https://secondly-sound-bear.ngrok-free.app";
+const baseUrl = 'http://localhost:8000';
 
-export const apiClient = async (endpoint: string, options: RequestInit = {}) => {
-  const accessToken = localStorage.getItem("accessToken");
+const request = async (
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+  endpoint: string,
+  body?: any,
+  options: RequestInit = {}
+): Promise<any> => {
+  let token = getAccessToken();
 
-  const headers = {
-    "Content-Type": "application/json",
-    ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
-    ...options.headers,
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...(options.headers as Record<string, string> || {}),
   };
 
-  let response;
-  try {
-    response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      ...options,
-      headers,
-      mode: "cors",
-    });
-  } catch (error) {
-    console.error("Network error:", error);
-    throw new Error("Error de conexión con el servidor");
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
   }
 
-  // Token expirado
+  const config: RequestInit = {
+    method,
+    headers,
+    body: body ? JSON.stringify(body) : undefined,
+    ...options,
+  };
+
+  let response = await fetch(`${baseUrl}${endpoint}`, config);
+
+  // Si el token expiró, intenta refrescar
   if (response.status === 401) {
     const refreshed = await refreshTokenService();
     if (refreshed) {
-      const newAccessToken = localStorage.getItem("accessToken");
-      headers.Authorization = `Bearer ${newAccessToken}`;
-      return await fetch(`${API_BASE_URL}${endpoint}`, {
-        ...options,
-        headers,
-        mode: "cors",
-      });
-    } else {
-      window.location.href = "/login";
-      throw new Error("Sesión expirada");
+      token = getAccessToken();
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+        response = await fetch(`${baseUrl}${endpoint}`, config);
+      }
     }
   }
 
-  return response;
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || errorData.detail || 'Error en la solicitud');
+  }
+
+  return await response.json();
+};
+
+export const apiClient = {
+  get: (endpoint: string, options?: RequestInit) =>
+    request('GET', endpoint, undefined, options),
+
+  post: (endpoint: string, body: any, options?: RequestInit) =>
+    request('POST', endpoint, body, options),
+
+  put: (endpoint: string, body: any, options?: RequestInit) =>
+    request('PUT', endpoint, body, options),
+
+  delete: (endpoint: string, options?: RequestInit) =>
+    request('DELETE', endpoint, undefined, options),
 };

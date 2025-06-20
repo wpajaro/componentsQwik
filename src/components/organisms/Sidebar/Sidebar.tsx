@@ -5,15 +5,26 @@ import type { PropFunction } from '@builder.io/qwik';
 import { Acordeon } from '@/components/molecules/Accordion/Acordeon';
 import styles from './sidebar.module.css';
 
-
-interface SidebarProps {
+export interface SidebarProps {
+  title?: string,
   onToggleSidebar$?: PropFunction<() => void>;
   isOpen: boolean;
+  menuItems?: {
+    key: string;
+    title: string;
+    items?: {
+      key: string;
+      title: string;
+      href?: string;
+      newTab?: boolean;
+      icon?: string;
+      iconSize?: 'sm' | 'md' | 'lg' | 'xl';
+    }[];
+  }[];
 }
 
-export const Sidebar = component$<SidebarProps>(({ isOpen }) => {
-
-  const menuItems = [
+export const Sidebar = component$<SidebarProps>(({ isOpen, menuItems, title }) => {
+  const defaultMenu = [
     {
       key: 'atoms',
       title: 'ÁTOMOS',
@@ -43,7 +54,10 @@ export const Sidebar = component$<SidebarProps>(({ isOpen }) => {
         { key: 'sidenav', title: 'Sidenav', href: '/#' },
       ]
     },
-  ]
+  ];
+
+  const finalMenu = menuItems ?? defaultMenu;
+
   return (
     <aside class={[
       styles.sidebar,
@@ -51,24 +65,24 @@ export const Sidebar = component$<SidebarProps>(({ isOpen }) => {
     ]}>
       <nav class={styles.sidebarNav}>
         <div class={styles.sectionTitulo}>
-          <h5>
-            <Icon name="fa-solid fa-border-all" size='xl'/>
-            Componentes 
-          </h5>
+          <Icon name="fa-solid fa-border-all" size='xl' />
+          <h5 class={styles.tituloComponent}>{ title || 'Componentes' }</h5>
         </div> 
         <Link href='/'>
-          {isOpen && <span>Inicio</span>}
+          {isOpen && <span class={styles.inicio}>Inicio</span>}
         </Link>
         <section>
+          {finalMenu.length > 0 && (
           <Acordeon 
             variant='flush'
             colorScheme='light'
-            items={menuItems}
+            items={finalMenu}
             defaultOpenKeys={['components', 'docs']}
             multiple={true}
             bordered={false}
-            onItemClick$={(key) => console.log('Item seleccionado:', key)}>
-          </Acordeon>
+            onItemClick$={(key) => console.log('Item seleccionado:', key)} 
+          />
+          )}
         </section>
       </nav>
     </aside>
